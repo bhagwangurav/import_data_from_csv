@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  name: MyString
+  team_stage_id: 
+  appears: 
+  frequency: 
+  type: 
+  role_id: 
+  required: false
+  conditions: MyString
+  mapping_id: 
+
+two:
+  id: 
+  name: MyString
+  team_stage_id: 
+  appears: 
+  frequency: 
+  type: 
+  role_id: 
+  required: false
+  conditions: MyString
+  mapping_id: 
