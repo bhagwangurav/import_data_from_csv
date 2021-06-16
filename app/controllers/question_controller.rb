@@ -1,5 +1,5 @@
 class QuestionController < ApplicationController
-  before_filter :authenticate_request!
+  before_action :authenticate_request!
 
   def index
     @questions = Question.all
