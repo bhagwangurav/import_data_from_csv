@@ -24,9 +24,11 @@ class ApplicationController < ActionController::Base
   end
 
   def user_id_in_token?
+=begin    
     puts http_token
     puts auth_token
     puts auth_token[:user_id].to_i
+=end
     http_token && auth_token && auth_token[:user_id].to_i
   end
 end
