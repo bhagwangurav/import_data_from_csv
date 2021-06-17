@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   require 'csv'
-  belongs_to :teamingStage, optional: true
+  belongs_to :teaming_stage, optional: true
   belongs_to :role, optional: true
   belongs_to :mapping, optional: true
   
