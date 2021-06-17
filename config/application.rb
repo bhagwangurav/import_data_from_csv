@@ -25,7 +25,7 @@ module ImportData
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000'
+        origins 'fast-falls-63788.herokuapp.com'
         resource '*', :headers => :any, :methods => :any
        end
     end
