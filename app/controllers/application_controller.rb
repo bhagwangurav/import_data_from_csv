@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protected
   def authenticate_request!
     @current_user ||= User.find(auth_token[:user_id]) if auth_token
-    @current_user || errors.add(:token, 'Invalid token') && nil
+    if(!@current_user)
+      render json: { errors: ['Not Authenticated'] }, status: :unauthorized
+    end
   end
 
   private
