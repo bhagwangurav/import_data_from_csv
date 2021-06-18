@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
   attr_reader :current_user
   skip_before_action :verify_authenticity_token 
   protected
-  def authenticate_request!
+  def authenticate_request
+    puts auth_token
+    puts user_id_in_token
+    puts "========"
     unless user_id_in_token?
       render json: { errors: ['Not Authenticated'] }, status: :unauthorized
       return
