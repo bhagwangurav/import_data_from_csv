@@ -2,10 +2,7 @@ class ApplicationController < ActionController::Base
   attr_reader :current_user
   skip_before_action :verify_authenticity_token 
   protected
-  def authenticate_request
-    puts auth_token
-    puts user_id_in_token?
-    puts "========"
+  def authenticate_request!
     unless user_id_in_token?
       render json: { errors: ['Not Authenticated'] }, status: :unauthorized
       return
@@ -13,8 +10,12 @@ class ApplicationController < ActionController::Base
     @current_user = User.find(auth_token[:user_id])
   rescue JWT::VerificationError, JWT::DecodeError
     render json: { errors: ['Not Authenticated'] }, status: :unauthorized
-  end
+  end  
 
+  def user_id_in_token?
+    http_token && auth_token && auth_token[:user_id].to_i
+  end
+  
   private
   def http_token
       @http_token ||= if request.headers['Authorization'].present?
@@ -24,12 +25,5 @@ class ApplicationController < ActionController::Base
 
   def auth_token
     @auth_token ||= JsonWebToken.decode(http_token)
-  end
-
-  def user_id_in_token?
-    puts "BB"
-    puts auth_token
-    puts "AAA"
-    http_token && auth_token && auth_token[:user_id].to_i
   end
 end
