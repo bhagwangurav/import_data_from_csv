@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token 
   protected
   def authenticate_request!
+    puts auth_token[:user_id]
+    puts "CCCCC"
     @current_user ||= User.find(auth_token[:user_id]) if auth_token
     if(!@current_user)
       render json: { errors: ['Not Authenticated'] }, status: :unauthorized
@@ -11,12 +13,16 @@ class ApplicationController < ActionController::Base
 
   private
   def http_token
+      puts request.headers['Authorization']
+      puts "AAAAA"
       @http_token ||= if request.headers['Authorization'].present?
         request.headers['Authorization'].split(' ').last
       end
   end
 
   def auth_token
+    puts http_token
+    puts "BBBBB"
     @auth_token ||= JsonWebToken.decode(http_token)
   end
 
