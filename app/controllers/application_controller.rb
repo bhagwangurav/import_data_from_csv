@@ -18,14 +18,17 @@ class ApplicationController < ActionController::Base
       @http_token ||= if request.headers['Authorization'].present?
         request.headers['Authorization'].split(' ').last
       end
+      puts @http_token
+      puts "EEEE"
   end
 
   def auth_token
     puts http_token
     puts "BBBBB"
+    
+    @auth_token ||= JsonWebToken.decode(http_token)
     puts @auth_token
     puts "DDDD"
-    @auth_token ||= JsonWebToken.decode(http_token)
   end
 
   #def user_id_in_token?
