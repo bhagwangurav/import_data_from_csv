@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_request!
+  before_action :authorize_request
 
   #For testing purpose
   def index
