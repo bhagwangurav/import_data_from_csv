@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
   def auth_token
     puts http_token
     puts "BBBBB"
+    puts @auth_token
+    puts "DDDD"
     @auth_token ||= JsonWebToken.decode(http_token)
   end
 
